@@ -1,0 +1,58 @@
+{
+    "name": "just-better/laravel-magento-async-nova",
+    "description": "Nova integration for just-better/laravel-magento-async",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Boon",
+            "email": "vincent@justbetter.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "laravel/nova": "^4.0",
+        "just-better/laravel-magento-async": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\MagentoAsyncNova\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JustBetter\\MagentoAsyncNova\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "style": "pint --test",
+        "analyse": "phpstan --memory-limit='1G'",
+        "quality": [
+            "@style",
+            "@analyse"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://repo.justbetter.nl"
+        }
+    ],
+    "require-dev": {
+        "larastan/larastan": "^2.9",
+        "laravel/pint": "^1.16",
+        "orchestra/testbench": "^9.0"
+    }
+}
