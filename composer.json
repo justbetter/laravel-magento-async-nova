@@ -1,6 +1,6 @@
 {
-    "name": "just-better/laravel-magento-async-nova",
-    "description": "Nova integration for just-better/laravel-magento-async",
+    "name": "justbetter/laravel-magento-async-nova",
+    "description": "Nova integration for justbetter/laravel-magento-async",
     "type": "package",
     "license": "MIT",
     "authors": [
