@@ -38,10 +38,12 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function bootResources(): static
     {
-        Nova::resources([
-            config('magento-async-nova.resources.bulk_request'),
-            config('magento-async-nova.resources.bulk_operation'),
-        ]);
+        Nova::serving(function (): void {
+            Nova::resources([
+                config('magento-async-nova.resources.bulk_request'),
+                config('magento-async-nova.resources.bulk_operation'),
+            ]);
+        });
 
         return $this;
     }
