@@ -2,7 +2,6 @@
 
 namespace JustBetter\MagentoAsyncNova\Nova;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use JustBetter\MagentoAsync\Enums\OperationStatus;
 use JustBetter\MagentoAsync\Models\BulkRequest;
@@ -132,6 +131,15 @@ class BulkRequestResource extends Resource
             ])->collapsable()->collapsedByDefault(),
 
             HasMany::make(__('Operations'), 'operations', BulkOperationResource::class),
+        ];
+    }
+
+    public function actions(NovaRequest $request): array
+    {
+        return [
+            Actions\CleanBulkRequests::make(),
+            Actions\UpdateBulkStatus::make(),
+            Actions\UpdateBulkStatuses::make(),
         ];
     }
 
