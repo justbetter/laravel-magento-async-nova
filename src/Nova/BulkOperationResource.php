@@ -102,6 +102,13 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    public function filters(NovaRequest $request): array
+    {
+        return [
+            Filters\BulkOperationErrorFilter::make(),
+        ];
+    }
+
     public static function authorizedToCreate(Request $request): bool
     {
         return false;
