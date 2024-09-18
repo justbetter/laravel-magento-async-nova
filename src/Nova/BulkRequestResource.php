@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use JustBetter\MagentoAsync\Enums\OperationStatus;
 use JustBetter\MagentoAsync\Models\BulkRequest;
 use Laravel\Nova\Fields\Badge;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
@@ -47,6 +48,10 @@ class BulkRequestResource extends Resource
     {
         return [
             Text::make(__('Store'), 'store_code')
+                ->filterable()
+                ->sortable(),
+
+            Text::make(__('method'), 'method')
                 ->filterable()
                 ->sortable(),
 
@@ -130,13 +135,19 @@ class BulkRequestResource extends Resource
                     ->json(),
             ])->collapsable()->collapsedByDefault(),
 
+            BelongsTo::make(__('Retry Of'), 'retryOf', static::class),
+
             HasMany::make(__('Operations'), 'operations', BulkOperationResource::class),
+
+            HasMany::make(__('Retries'), 'retries', static::class),
+
         ];
     }
 
     public function actions(NovaRequest $request): array
     {
         return [
+            Actions\RetryBulkRequest::make(),
             Actions\CleanBulkRequests::make(),
             Actions\UpdateBulkStatus::make(),
             Actions\UpdateBulkStatuses::make(),

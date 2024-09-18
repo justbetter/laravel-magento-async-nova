@@ -95,6 +95,13 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    public function actions(NovaRequest $request): array
+    {
+        return [
+            Actions\RetryBulkRequest::make(),
+        ];
+    }
+
     public static function authorizedToCreate(Request $request): bool
     {
         return false;
