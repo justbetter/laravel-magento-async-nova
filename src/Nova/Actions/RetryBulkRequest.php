@@ -37,6 +37,10 @@ class RetryBulkRequest extends Action
                 $request = $model->request;
             }
 
+            if ($request === null) {
+                continue;
+            }
+
             $action->retry($request, $onlyFailed);
         }
 
