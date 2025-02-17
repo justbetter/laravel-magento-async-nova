@@ -2,6 +2,7 @@
 
 namespace JustBetter\MagentoAsyncNova\Nova\Filters;
 
+use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Builder;
 use JustBetter\MagentoAsync\Enums\OperationStatus;
 use Laravel\Nova\Filters\Filter;
@@ -13,7 +14,7 @@ class BulkOperationErrorFilter extends Filter
 
     public $component = 'select-filter';
 
-    public function apply(NovaRequest $request, $query, $value): Builder
+    public function apply(NovaRequest $request, EloquentBuilder $query, mixed $value): Builder|EloquentBuilder
     {
         return $query->whereIn('status', OperationStatus::failedStatuses());
     }
