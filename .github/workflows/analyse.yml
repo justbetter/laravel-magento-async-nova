@@ -19,11 +19,11 @@ jobs:
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
         steps:
-            - name: Composer auth
-              run: composer config http-basic.nova.laravel.com $NOVA_USERNAME $NOVA_PASSWORD
-
             - name: Checkout code
               uses: actions/checkout@v4
+
+            - name: Composer auth
+              run: composer config http-basic.nova.laravel.com $NOVA_USERNAME $NOVA_PASSWORD
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
