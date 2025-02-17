@@ -45,10 +45,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "composer",
-            "url": "https://repo.justbetter.nl"
         }
     ],
     "require-dev": {
