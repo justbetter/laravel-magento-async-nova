@@ -59,7 +59,7 @@ class BulkOperationResource extends Resource
                     OperationStatus::NotRetriablyFailed->value => 'danger',
                     OperationStatus::Open->value => 'warning',
                     OperationStatus::Rejected->value => 'danger',
-                    null => 'info',
+                    '' => 'info',
                 ])
                 ->labels([
                     OperationStatus::Complete->value => 'Finished',
@@ -67,7 +67,7 @@ class BulkOperationResource extends Resource
                     OperationStatus::NotRetriablyFailed->value => 'Failed without retries',
                     OperationStatus::Open->value => 'Pending',
                     OperationStatus::Rejected->value => 'Rejected',
-                    null => 'Unknown',
+                    '' => 'Unknown',
                 ]),
 
             MorphTo::make(__('Subject'), 'subject'),
