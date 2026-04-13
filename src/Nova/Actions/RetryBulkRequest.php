@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova\Actions;
 
 use Illuminate\Support\Collection;
@@ -30,7 +32,6 @@ class RetryBulkRequest extends Action
         foreach ($models as $model) {
 
             if ($model instanceof BulkRequest) {
-                /** @var BulkRequest $model */
                 $request = $model;
             } else {
                 /** @var BulkOperation $model */
@@ -47,6 +48,7 @@ class RetryBulkRequest extends Action
         return ActionResponse::message(__('Created retries'));
     }
 
+    #[\Override]
     public function fields(NovaRequest $request): array
     {
         return [

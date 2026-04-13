@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova;
 
 use Illuminate\Http\Request;
@@ -34,11 +36,13 @@ class BulkRequestResource extends Resource
 
     public static $with = ['operations'];
 
+    #[\Override]
     public static function label(): string
     {
         return __('Requests');
     }
 
+    #[\Override]
     public static function uriKey(): string
     {
         return 'magento-async-bulk-requests';
@@ -62,7 +66,7 @@ class BulkRequestResource extends Resource
                 ->filterable()
                 ->sortable(),
 
-            Badge::make(__('Status'), function (BulkRequest $request) {
+            Badge::make(__('Status'), function (BulkRequest $request): string {
                 $pendingCount = $request->operations
                     ->whereIn('status', [OperationStatus::Open, null])
                     ->count();
@@ -92,30 +96,22 @@ class BulkRequestResource extends Resource
                 'finished_with_errors' => 'Finished with errors',
             ]),
 
-            Number::make(__('Pending'), function (BulkRequest $request): int {
-                return $request->operations
-                    ->whereIn('status', [OperationStatus::Open, null])
-                    ->count();
-            }),
+            Number::make(__('Pending'), fn (BulkRequest $request): int => $request->operations
+                ->whereIn('status', [OperationStatus::Open, null])
+                ->count()),
 
-            Number::make(__('Finished'), function (BulkRequest $request): int {
-                return $request->operations
-                    ->where('status', '=', OperationStatus::Complete)
-                    ->whereNotNull('status')
-                    ->count();
-            }),
+            Number::make(__('Finished'), fn (BulkRequest $request): int => $request->operations
+                ->where('status', '=', OperationStatus::Complete)
+                ->whereNotNull('status')
+                ->count()),
 
-            Number::make(__('Failed'), function (BulkRequest $request): int {
-                return $request->operations
-                    ->whereIn('status', [OperationStatus::RetriablyFailed, OperationStatus::NotRetriablyFailed])
-                    ->count();
-            }),
+            Number::make(__('Failed'), fn (BulkRequest $request): int => $request->operations
+                ->whereIn('status', [OperationStatus::RetriablyFailed, OperationStatus::NotRetriablyFailed])
+                ->count()),
 
-            Number::make(__('Rejected'), function (BulkRequest $request): int {
-                return $request->operations
-                    ->where('status', '=', OperationStatus::Rejected)
-                    ->count();
-            }),
+            Number::make(__('Rejected'), fn (BulkRequest $request): int => $request->operations
+                ->where('status', '=', OperationStatus::Rejected)
+                ->count()),
 
             DateTime::make(__('Started At'), 'started_at')
                 ->filterable()
@@ -144,6 +140,7 @@ class BulkRequestResource extends Resource
         ];
     }
 
+    #[\Override]
     public function actions(NovaRequest $request): array
     {
         return [
@@ -154,6 +151,7 @@ class BulkRequestResource extends Resource
         ];
     }
 
+    #[\Override]
     public function filters(NovaRequest $request): array
     {
         return [
@@ -161,16 +159,19 @@ class BulkRequestResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function authorizedToCreate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToUpdate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToReplicate(Request $request): bool
     {
         return false;

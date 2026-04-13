@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova\Filters;
 
 use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
@@ -19,6 +21,7 @@ class BulkOperationErrorFilter extends Filter
         return $query->whereIn('status', OperationStatus::failedStatuses());
     }
 
+    #[\Override]
     public function options(NovaRequest $request): array
     {
         return [

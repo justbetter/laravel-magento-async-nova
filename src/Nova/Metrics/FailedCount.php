@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova\Metrics;
 
 use JustBetter\MagentoAsync\Enums\OperationStatus;
@@ -19,11 +21,13 @@ class FailedCount extends Value
         return $this->count($request, BulkOperation::query()->whereIn('status', [OperationStatus::RetriablyFailed, OperationStatus::NotRetriablyFailed]));
     }
 
+    #[\Override]
     public function uriKey(): string
     {
         return 'bulk-operation-failed-count';
     }
 
+    #[\Override]
     public function name(): string
     {
         return __('Failed');
