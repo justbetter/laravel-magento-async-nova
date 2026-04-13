@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova\Filters;
 
 use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
@@ -16,11 +18,12 @@ class BulkRequestErrorFilter extends Filter
 
     public function apply(NovaRequest $request, EloquentBuilder $query, mixed $value): Builder|EloquentBuilder
     {
-        return $query->whereHas('operations', function (Builder $query) {
+        return $query->whereHas('operations', function (Builder $query): void {
             $query->where('status', '!=', OperationStatus::Complete);
         });
     }
 
+    #[\Override]
     public function options(NovaRequest $request): array
     {
         return [

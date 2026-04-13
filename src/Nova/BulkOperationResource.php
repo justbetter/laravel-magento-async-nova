@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\MagentoAsyncNova\Nova;
 
 use Illuminate\Http\Request;
@@ -30,11 +32,13 @@ class BulkOperationResource extends Resource
 
     public static $globallySearchable = false;
 
+    #[\Override]
     public static function label(): string
     {
         return __('Operations');
     }
 
+    #[\Override]
     public static function uriKey(): string
     {
         return 'magento-async-bulk-operations';
@@ -85,6 +89,7 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    #[\Override]
     public function cards(NovaRequest $request): array
     {
         return [
@@ -95,6 +100,7 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    #[\Override]
     public function actions(NovaRequest $request): array
     {
         return [
@@ -102,6 +108,7 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    #[\Override]
     public function filters(NovaRequest $request): array
     {
         return [
@@ -109,16 +116,19 @@ class BulkOperationResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function authorizedToCreate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToUpdate(Request $request): bool
     {
         return false;
     }
 
+    #[\Override]
     public function authorizedToReplicate(Request $request): bool
     {
         return false;
