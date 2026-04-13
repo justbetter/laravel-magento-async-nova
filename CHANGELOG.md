@@ -1,6 +1,15 @@
 # Changelog 
 
-[Unreleased changes](https://github.com/justbetter/laravel-magento-async-nova/compare/4.2.0...main)
+[Unreleased changes](https://github.com/justbetter/laravel-magento-async-nova/compare/4.3.0...main)
+## [4.3.0](https://github.com/justbetter/laravel-magento-async-nova/releases/tag/4.3.0) - 2026-04-13
+
+### What's Changed
+* Adjust workflows by @VincentBean in https://github.com/justbetter/laravel-magento-async-nova/pull/4
+* Laravel 13 support by @VincentBean in https://github.com/justbetter/laravel-magento-async-nova/pull/5
+
+
+**Full Changelog**: https://github.com/justbetter/laravel-magento-async-nova/compare/4.2.0...4.3.0
+
 ## [4.2.0](https://github.com/justbetter/laravel-magento-async-nova/releases/tag/4.2.0) - 2025-02-17
 
 ### What's Changed
